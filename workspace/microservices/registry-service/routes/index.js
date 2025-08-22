@@ -16,7 +16,7 @@ function getRequestArguments(req) {
 }
 
 router.put(
-  "/register/:servicename/:serviceversion/:serviceport",
+  "/register/:servicename/:serviceversion/:serviceport", // we need all this info to identify a service
   (req, res, next) => {
     const { servicename, serviceversion, serviceport, serviceip } =
       getRequestArguments(req);
@@ -32,7 +32,7 @@ router.put(
 
 // Route to register a service
 router.put(
-  "/register/:servicename/:serviceversion/:serviceport", // we need all this info to identify a service
+  "/register/:servicename/:serviceversion/:serviceport",
   (req, res, next) => {
     return next("Not implemented");
   }
