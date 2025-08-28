@@ -5,12 +5,13 @@ function requireAdmin(req, res, next) {
   const token = authHeader && authHeader.split(" ")[1];
   // Bearer <token> → Bearer 123
   if (!token) {
-    return res.sendStatus(401);
+    return res.sendStatus(401); // unauthorized
   }
   return jwt.verify(token, "MY SECRET KEY", (error, user) => {
     if (error) return res.sendStatus(403);
     if (!user.isAdmin) return res.sendStatus(403);
     req.user = user;
+    return next();
   });
 }
 
